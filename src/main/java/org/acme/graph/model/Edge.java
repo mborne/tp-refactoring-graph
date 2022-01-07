@@ -44,6 +44,15 @@ public class Edge {
 		}else{
 		this.source = source;
 		this.target = target;
+
+		source.getOutEdges().add(this);
+		target.getInEdges().add(this);
+
+		GeometryFactory gf = new GeometryFactory();
+		this.geometry =  gf.createLineString(new Coordinate[] {
+					source.getCoordinate(),
+					target.getCoordinate()
+				});
 		}
 	}
 
@@ -66,9 +75,6 @@ public class Edge {
 		return source;
 	}
 
-	public void setSource(Vertex source) {
-		this.source = source;
-	}
 
 	/**
 	 * Cible avec rendu JSON sous forme d'identifiant
@@ -81,25 +87,13 @@ public class Edge {
 		return target;
 	}
 
-	public void setTarget(Vertex target) {
-		this.target = target;
-	}
 
 	public void setGeometry(LineString geometry){
 		this.geometry = geometry;
 	}
 
 	public LineString getGeometry(){
-		if (this.geometry == null) {
-				GeometryFactory gf = new GeometryFactory();
-				return gf.createLineString(new Coordinate[] {
-					source.getCoordinate(),
-					target.getCoordinate()
-				});
-
-		}else{
 			return this.geometry;
-		}
 	}
 
 	/**
