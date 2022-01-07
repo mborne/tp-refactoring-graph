@@ -33,6 +33,11 @@ public class Edge {
 	 */
 	private Vertex target;
 
+	/**
+	 * Geometry du tronçon
+	 */
+	private LineString geometry;
+
 	Edge(Vertex source, Vertex target) {
 		if (source == null || target == null) {
 			throw new NullPointerException("Vertice(s) is(are) null");
@@ -80,23 +85,32 @@ public class Edge {
 		this.target = target;
 	}
 
+	public void setGeometry(LineString geometry){
+		this.geometry = geometry;
+	}
+
+	public LineString getGeometry(){
+		if (this.geometry == null) {
+				GeometryFactory gf = new GeometryFactory();
+				return gf.createLineString(new Coordinate[] {
+					source.getCoordinate(),
+					target.getCoordinate()
+				});
+
+		}else{
+			return this.geometry;
+		}
+	}
+
 	/**
 	 * dijkstra - coût de parcours de l'arc (distance géométrique)
 	 * 
 	 * @return
 	 */
 	public double getCost() {
-		return source.getCoordinate().distance(target.getCoordinate());
+		return this.getGeometry().getLength();
 	}
 
-	@JsonSerialize(using = GeometrySerializer.class)
-	public LineString getGeometry() {
-		GeometryFactory gf = new GeometryFactory();
-		return gf.createLineString(new Coordinate[] {
-			source.getCoordinate(),
-			target.getCoordinate()
-		});
-	}
 
 	@Override
 	public String toString() {
