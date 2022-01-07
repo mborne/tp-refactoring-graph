@@ -33,7 +33,7 @@ public class Edge {
 	 */
 	private Vertex target;
 
-	public Edge(Vertex source, Vertex target) {
+	Edge(Vertex source, Vertex target) {
 		if (source == null || target == null) {
 			throw new NullPointerException("Vertice(s) is(are) null");
 		}else{
