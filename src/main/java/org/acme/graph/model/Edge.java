@@ -33,9 +33,20 @@ public class Edge {
 	 */
 	private Vertex target;
 
-	public Edge(Vertex source, Vertex target){
-		this.source = source;
-		this.target = target;
+	/**
+	 * Constructor 
+	 * 
+	 * @param source
+	 * @param target
+	 */
+
+	Edge(Vertex source, Vertex target){
+		if (source==null || target==null){
+			throw new NullPointerException("Vertex is null");
+		} else {
+			this.source = source;
+			this.target = target;
+		}
 	}
 
 	public String getId() {
