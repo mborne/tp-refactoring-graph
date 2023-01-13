@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.acme.graph.errors.NotFoundException;
 import org.locationtech.jts.geom.Coordinate;
 
@@ -96,20 +97,14 @@ public class Graph {
 	}
 
 	/**
-	 * Recherche des arcs sortant d'un sommet
+	 * Recherche des arcs entrant dans un sommet
 	 * 
 	 * @param vertex
 	 * @return
 	 */
+	@JsonIgnore
 	public List<Edge> getInEdges(Vertex vertex) {
-		List<Edge> result = new ArrayList<>();
-		for (Edge candidate : edges) {
-			if (candidate.getTarget() != vertex) {
-				continue;
-			}
-			result.add(candidate);
-		}
-		return result;
+		return vertex.getInEdge();
 	}
 
 	/**
@@ -118,15 +113,9 @@ public class Graph {
 	 * @param vertex
 	 * @return
 	 */
+	@JsonIgnore
 	public List<Edge> getOutEdges(Vertex vertex) {
-		List<Edge> result = new ArrayList<>();
-		for (Edge candidate : edges) {
-			if (candidate.getSource() != vertex) {
-				continue;
-			}
-			result.add(candidate);
-		}
-		return result;
+		return vertex.getOutEdge();
 	}
 
 	/**
