@@ -3,6 +3,7 @@ package org.acme.graph.model;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.acme.graph.TestGraphFactory;
@@ -10,6 +11,8 @@ import org.acme.graph.errors.NotFoundException;
 import org.junit.Assert;
 import org.junit.Test;
 import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.LineString;
 
 public class GraphTest {
 
@@ -83,5 +86,6 @@ public class GraphTest {
 		assertEquals(1, result.size());
 		assertEquals("kl (k->l)", result.get(0).toString());
 	}
+
 
 }

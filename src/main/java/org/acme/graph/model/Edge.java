@@ -33,6 +33,17 @@ public class Edge {
 	 */
 	private Vertex target;
 
+	/**
+	 * Geometrie du troncon
+	 */
+	private LineString geometry;
+
+	/**
+	 * Constructor
+	 *
+	 * @param source
+	 * @param target
+	 */
 	Edge(Vertex source, Vertex target){
 		this.source = source;
 		this.target = target;
@@ -82,16 +93,28 @@ public class Edge {
 	 * @return
 	 */
 	public double getCost() {
-		return source.getCoordinate().distance(target.getCoordinate());
+		if(! this.geometry.isEmpty()){
+			return geometry.getLength();
+		}else {
+			return source.getCoordinate().distance(target.getCoordinate());
+		}
+	}
+
+	public void setGeometry(LineString geometry) {
+		this.geometry = geometry;
 	}
 
 	@JsonSerialize(using = GeometrySerializer.class)
 	public LineString getGeometry() {
-		GeometryFactory gf = new GeometryFactory();
-		return gf.createLineString(new Coordinate[] {
-			source.getCoordinate(),
-			target.getCoordinate()
-		});
+		if (this.geometry.isEmpty()) {
+			GeometryFactory gf = new GeometryFactory();
+			return gf.createLineString(new Coordinate[]{
+					source.getCoordinate(),
+					target.getCoordinate()
+			});
+		}else{
+			return this.geometry;
+		}
 	}
 
 	@Override
