@@ -32,12 +32,14 @@ public class Edge {
 	 * Sommet final
 	 */
 	private Vertex target;
-/*
-	public Edge() {
 
-	}*/
+	public void setGeometry(LineString geometry) {
+		this.geometry = geometry;
+	}
 
-	public Edge(Vertex source, Vertex target) {
+	public LineString geometry;
+
+	Edge(Vertex source, Vertex target) {
 		this.source = source;
 		this.target = target;
 	}
