@@ -1,6 +1,7 @@
-package org.acme.graph.routing;
+package org.acme.graph.model;
 
 import org.acme.graph.model.*;
+import org.acme.graph.routing.DijkstraPathFinder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
