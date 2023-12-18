@@ -43,13 +43,13 @@ public class Vertex {
 	 * dijkstra - Arêtes entrantes
 	 */
 	@JsonIgnore
-	private List<Edge> inEdges = new ArrayList();
+	private List<Edge> inEdges = new ArrayList<Edge>();
 	
 	/**
 	 * dijkstra - Arrêtes sortantes
 	 */
 	@JsonIgnore
-	private List<Edge> outEdges = new ArrayList();
+	private List<Edge> outEdges = new ArrayList<Edge>();
 	
 	Vertex() {
 	}
