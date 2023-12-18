@@ -98,7 +98,7 @@ public class GraphReader {
 			/* Création de l'arc pour le parcours en sens opposé */
 			String idr = id + "-reverse";
 			Edge reverseEdge = graph.createEdge(source, target, idr);
-			reverseEdge.setGeometry(geometry);
+			reverseEdge.setGeometry(geometry.reverse());
 		}
 	}
 
