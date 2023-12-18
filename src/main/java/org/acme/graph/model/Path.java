@@ -11,7 +11,11 @@ public class Path {
 		this.edges = edges;
 	}
 	
-	public double getLength(List<Edge> edges) {
+	public List<Edge> getEdges(){
+		return this.edges;
+	}
+	
+	public double getLength() {
 		double length = 0;
 		for (Edge edge: edges) {
 			length += edge.getCost();
