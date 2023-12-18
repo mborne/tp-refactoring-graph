@@ -7,5 +7,15 @@ public class Path {
 	
 	private List<Edge> edges = new ArrayList<Edge>();
 	
-
+	public Path(List<Edge> edges) {
+		this.edges = edges;
+	}
+	
+	public double getLength(List<Edge> edges) {
+		double length = 0;
+		for (Edge edge: edges) {
+			length += edge.getCost();
+		}
+		return length;
+	}
 }
