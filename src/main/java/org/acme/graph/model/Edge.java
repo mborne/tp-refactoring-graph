@@ -88,12 +88,21 @@ public class Edge {
 	 * @return
 	 */
 	public double getCost() {
-		return source.getCoordinate().distance(target.getCoordinate());
+		return this.getGeometry().getLength();
 	}
-
+	
 	@JsonSerialize(using = GeometrySerializer.class)
 	public LineString getGeometry() {
-		return this.geometry;
+		if (this.geometry == null) {
+			GeometryFactory gf = new GeometryFactory();
+			return gf.createLineString(new Coordinate[] {
+				source.getCoordinate(),
+				target.getCoordinate()
+			});
+		} else {
+			return this.geometry;
+		}
+		
 	}
 	
 	
