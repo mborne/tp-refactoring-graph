@@ -1,6 +1,9 @@
 package org.acme.graph.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.List;
+
 import org.locationtech.jts.geom.Coordinate;
 
 /**
@@ -35,6 +38,15 @@ public class Vertex {
 	 */
 	private boolean visited;
 
+	/**
+	 * dijkstra - Arêtes entrantes
+	 */
+	private List<Edge> inEdges;
+	
+	/**
+	 * dijkstra - Arrêtes sortantes
+	 */
+	private List<Edge> outEdges;
 	
 	Vertex() {
 	}
