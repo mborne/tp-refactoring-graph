@@ -92,6 +92,14 @@ public class Vertex {
 	public void setVisited(boolean visited) {
 		this.visited = visited;
 	}
+	
+	public List<Edge> getInEdges() {
+		return this.inEdges;
+	}
+	
+	public List<Edge> getOutEdges(){
+		return this.outEdges;
+	}
 
 	@Override
 	public String toString() {
