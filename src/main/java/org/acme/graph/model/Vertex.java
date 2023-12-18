@@ -2,6 +2,7 @@ package org.acme.graph.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.locationtech.jts.geom.Coordinate;
@@ -41,12 +42,12 @@ public class Vertex {
 	/**
 	 * dijkstra - Arêtes entrantes
 	 */
-	private List<Edge> inEdges;
+	private List<Edge> inEdges = new ArrayList();
 	
 	/**
 	 * dijkstra - Arrêtes sortantes
 	 */
-	private List<Edge> outEdges;
+	private List<Edge> outEdges = new ArrayList();
 	
 	Vertex() {
 	}

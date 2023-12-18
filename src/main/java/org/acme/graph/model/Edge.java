@@ -38,6 +38,8 @@ public class Edge {
 	Edge(Vertex source, Vertex target) {
 		this.source = source;
 		this.target = target;
+		source.getOutEdges().add(this);
+	  	target.getInEdges().add(this);
 	}
 
 	public void setGeometry(LineString geometry) {
