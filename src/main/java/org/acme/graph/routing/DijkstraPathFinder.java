@@ -111,9 +111,11 @@ public class DijkstraPathFinder {
 	private void initGraph(Vertex source) {
 		log.trace("initGraph({})", source);
 		for (Vertex vertex : graph.getVertices()) {
-			vertex.setCost(source == vertex ? 0.0 : Double.POSITIVE_INFINITY);
-			vertex.setReachingEdge(null);
-			vertex.setVisited(false);
+			PathNode pathNode = new PathNode();
+			nodes.put(vertex, pathNode);
+			pathNode.setCost(source == vertex ? 0.0 : Double.POSITIVE_INFINITY);
+			pathNode.setReachingEdge(null);
+			pathNode.setVisited(false);
 		}
 	}
 
