@@ -27,16 +27,25 @@ public class Edge {
 	 * Sommet initial
 	 */
 	private Vertex source;
-
+	
 	/**
 	 * Sommet final
 	 */
 	private Vertex target;
+	
+	private LineString geometry;
 
-	public Edge() {
-
+	Edge(Vertex source, Vertex target) {
+		this.source = source;
+		this.target = target;
+		source.getOutEdges().add(this);
+	  	target.getInEdges().add(this);
 	}
 
+	public void setGeometry(LineString geometry) {
+		this.geometry = geometry;
+	}
+	
 	public String getId() {
 		return id;
 	}
@@ -56,10 +65,6 @@ public class Edge {
 		return source;
 	}
 
-	public void setSource(Vertex source) {
-		this.source = source;
-	}
-
 	/**
 	 * Cible avec rendu JSON sous forme d'identifiant
 	 * 
@@ -71,27 +76,30 @@ public class Edge {
 		return target;
 	}
 
-	public void setTarget(Vertex target) {
-		this.target = target;
-	}
-
 	/**
 	 * dijkstra - coût de parcours de l'arc (distance géométrique)
 	 * 
 	 * @return
 	 */
 	public double getCost() {
-		return source.getCoordinate().distance(target.getCoordinate());
+		return this.getGeometry().getLength();
 	}
-
+	
 	@JsonSerialize(using = GeometrySerializer.class)
 	public LineString getGeometry() {
-		GeometryFactory gf = new GeometryFactory();
-		return gf.createLineString(new Coordinate[] {
-			source.getCoordinate(),
-			target.getCoordinate()
-		});
+		if (this.geometry == null) {
+			GeometryFactory gf = new GeometryFactory();
+			return gf.createLineString(new Coordinate[] {
+				source.getCoordinate(),
+				target.getCoordinate()
+			});
+		} else {
+			return this.geometry;
+		}
+		
 	}
+	
+	
 
 	@Override
 	public String toString() {

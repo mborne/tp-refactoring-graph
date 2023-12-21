@@ -90,19 +90,15 @@ public class GraphReader {
 
 		/* Création de l'arc pour le parcours en sens direct */
 		if (sens.equals(DOUBLE_SENS) || sens.equals(SENS_DIRECT)) {
-			Edge directEdge = new Edge();
-			directEdge.setId(id + "-direct");
-			directEdge.setSource(source);
-			directEdge.setTarget(target);
-			graph.getEdges().add(directEdge);
+			String idd = id + "-direct";
+			Edge directEdge = graph.createEdge(target, source , idd);
+			directEdge.setGeometry(geometry);
 		}
 		if (sens.equals(DOUBLE_SENS) || sens.equals(SENS_INVERSE)) {
 			/* Création de l'arc pour le parcours en sens opposé */
-			Edge reverseEdge = new Edge();
-			reverseEdge.setId(id + "-reverse");
-			reverseEdge.setSource(target);
-			reverseEdge.setTarget(source);
-			graph.getEdges().add(reverseEdge);
+			String idr = id + "-reverse";
+			Edge reverseEdge = graph.createEdge(source, target, idr);
+			reverseEdge.setGeometry(geometry.reverse());
 		}
 	}
 
