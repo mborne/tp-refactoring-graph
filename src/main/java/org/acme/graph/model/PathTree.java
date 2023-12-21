@@ -57,4 +57,12 @@ public class PathTree {
 	public PathNode getNode(Vertex vertex) {
 		return nodes.get(vertex);
 	}
+	
+	public boolean isReached(Vertex destination) {	
+		if(this.getNode(destination).getReachingEdge() != null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

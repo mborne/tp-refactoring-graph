@@ -77,6 +77,7 @@ public class DijkstraPathFinder {
 	}
 
 
+
 	/**
 	 * Recherche le prochain sommet à visiter. Dans l'algorithme de Dijkstra, ce
 	 * sommet est le sommet non visité le plus proche de l'origine du calcul de plus
